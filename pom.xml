@@ -7,9 +7,9 @@
   <groupId>pl.edu.wroc.pwr.ds</groupId>
   <artifactId>list1-2019</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>list1-2019</name>
-  <!-- FIXME change it to the project's website -->
   <url>https://http://distributedsystems.ml</url>
 
   <properties>
@@ -18,15 +18,31 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
-  <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.apache.xmlrpc/xmlrpc -->
-  <dependency>
-      <groupId>org.apache.xmlrpc</groupId>
-      <artifactId>xmlrpc</artifactId>
-      <version>3.1.3</version>
-      <type>pom</type>
-  </dependency>
-  </dependencies>
+  <modules>
+      <module>client</module>
+      <module>server</module>
+  </modules>
+  <dependencyManagement>
+    <dependencies>
+      <!-- https://mvnrepository.com/artifact/org.apache.xmlrpc/xmlrpc-server -->
+      <dependency>
+          <groupId>org.apache.xmlrpc</groupId>
+          <artifactId>xmlrpc-server</artifactId>
+          <version>3.1.3</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.xmlrpc/xmlrpc-client -->
+      <dependency>
+          <groupId>org.apache.xmlrpc</groupId>
+          <artifactId>xmlrpc-client</artifactId>
+          <version>3.1.3</version>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -69,6 +85,11 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.1.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
